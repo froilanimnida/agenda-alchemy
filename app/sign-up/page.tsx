@@ -6,10 +6,15 @@ import FormComponent from '../components/Forms'
 
 const SignUpPage = () => {
   return (
-    <div className='p-7 flex min-h-screen justify-between flex-col'>
+    <div className='p-5 flex min-h-screen justify-between flex-col'>
       <Logo />
-      <main className='p-5'>
-        <Image priority={true} src={ SignUpIcon } alt='Image of generic icon of a person' />
+      <main className='p-5 gap-5 flex flex-col'>
+        <Image 
+          priority={true}
+          src={ SignUpIcon }
+          className='p-7' alt='Image of generic icon of a person' />
+
+        <h1 className='text-center font-bold'>Create an Account</h1>
         <FormComponent mode="sign-up" />
       </main>
     </div>

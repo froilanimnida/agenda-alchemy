@@ -1,4 +1,5 @@
 'use client'
+import Link from 'next/link';
 import React, { useState, useRef } from 'react'
 import { FaCircleArrowRight } from "react-icons/fa6";
 
@@ -52,7 +53,7 @@ const FormComponent = ({mode}: {mode: string}) => {
 
   if (mode === 'sign-up') {
     return (
-      <form onSubmit={handleSignUp}>
+      <form className='border p-5 rounded-2xl' onSubmit={handleSignUp}>
         <div>
           {signUpFields.map(field => {
             return (
@@ -69,10 +70,15 @@ const FormComponent = ({mode}: {mode: string}) => {
           })}
         </div>
 
-        <button type='submit' className='btn'>
-          Sign Up
-          <FaCircleArrowRight />
-        </button>
+        <div className='flex flex-row justify-between items-center'>
+          <button type='submit' className='btn'>
+            Sign Up
+            <FaCircleArrowRight />
+          </button>
+          <div className='divider divider-horizontal'>OR</div>
+          <Link className='link' href={'/log-in'}>Login instead</Link>
+        </div>
+        
       </form>
     )
   }
