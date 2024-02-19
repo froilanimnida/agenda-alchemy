@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "react-hot-toast";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,9 +18,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <main>
-      <body className={inter.className}>{children}</body>
-      </main>
+      <body className={inter.className}>
+        <Toaster position="top-center"/>
+        <main>
+          {children}
+        </main>
+        <Analytics />
+      </body>
     </html>
   )
 }

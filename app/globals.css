@@ -16,8 +16,8 @@
   }
 }
 
-body {
-  
+.btn {
+  @apply rounded-2xl
 }
 
 @layer utilities {
