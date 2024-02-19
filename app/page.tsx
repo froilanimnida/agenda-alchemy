@@ -1,4 +1,4 @@
-import Logo from './components/logo'
+import Logo from './components/Logo'
 import Image from 'next/image'
 import GetStarted from '../public/images/get-started-banner.png'
 import Link from 'next/link'
