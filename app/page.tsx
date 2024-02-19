@@ -6,7 +6,7 @@ import { FaCircleArrowRight } from "react-icons/fa6";
 
 export default function Home() {
   return (
-    <div className='p-7 flex min-h-screen justify-between flex-col'>
+    <div className='p-5 flex min-h-screen justify-between flex-col'>
       <Logo />
       <main className='flex flex-col items-center h-5/6 p-5 gap-20'>
         <div className='flex flex-col gap-3'>
