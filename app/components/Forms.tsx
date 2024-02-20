@@ -7,9 +7,13 @@ const FormComponent = ({mode}: {mode: string}) => {
   const [name, setName] = useState('')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [signInUseraname, setSignInUsername] = useState('')
+  const [signInPassword, setSignInPassword] = useState('')
   const nameRef = useRef<HTMLInputElement>(null)
   const usernameRef = useRef<HTMLInputElement>(null)
   const passwordRef = useRef<HTMLInputElement>(null)
+  const signInUsernameRef = useRef<HTMLInputElement>(null)
+  const signInPasswordRef = useRef<HTMLInputElement>(null)
   const signUpFields = [
     {
       id: 1,
@@ -45,9 +49,37 @@ const FormComponent = ({mode}: {mode: string}) => {
     }
   ]
 
+  const signInFields = [
+    {
+      id: 1,
+      label: 'Username:',
+      type: 'text',
+      placeHolder: 'johndoe123',
+      ref: signInUsernameRef,
+      onchange: (e: { target: { value: string; }; }) => {
+        setSignInUsername(e.target.value)
+      }
+    },
+
+    {
+      id: 2,
+      label: 'Password:',
+      type: 'password',
+      placeHolder: '********',
+      ref: signInUsernameRef,
+      onchange: (e: { target: { value: string; }; }) => {
+        setSignInPassword(e.target.value)
+      }
+    }
+  ]
+
   const handleSignUp = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     
+  }
+
+  const handleSignIn = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
   }
   
 
@@ -85,7 +117,32 @@ const FormComponent = ({mode}: {mode: string}) => {
 
   else {
     return (
-      <div>Sign In</div>
+      <form className='border p-5 rounded-2xl' onSubmit={handleSignIn}>
+        <div>
+        {signInFields.map(field => {
+            return (
+            <label key={field.id} className="form-control w-full max-w-xs">
+              <div className="label">
+                <span className="label-text">{field.label}</span>
+              </div>
+              <input onChange={field.onchange} ref={ field.ref } type={field.type} placeholder={field.placeHolder} className="input input-bordered w-full max-w-xs" />
+              <div className="label">
+                <span className="label-text-alt"></span>
+              </div>
+            </label>
+          )
+          })}
+        </div>
+
+        <div className='flex flex-row justify-between items-center'>
+          <button type='submit' className='btn'>
+            Log In
+            <FaCircleArrowRight />
+          </button>
+          <div className='divider divider-horizontal'>OR</div>
+          <Link className='link' href={'/log-in'}>Sign Up instead</Link>
+        </div>
+      </form>
     )
   }
 }
