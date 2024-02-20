@@ -3,6 +3,9 @@ import LoginIcon from '../../public/images/login-icon.png'
 import Image from 'next/image'
 import FormComponent from '../components/Forms'
 import Logo from '../components/Logo'
+import type { Metadata } from "next";
+
+export const metadata: Metadata = { title: "AgendaAlchemy | Log In" }
 
 const Login = () => {
   return (

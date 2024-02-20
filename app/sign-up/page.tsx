@@ -3,6 +3,9 @@ import Logo from '../components/Logo'
 import SignUpIcon from '../../public/images/sign-up-icon.png'
 import Image from 'next/image'
 import FormComponent from '../components/Forms'
+import type { Metadata } from "next";
+
+export const metadata: Metadata = { title: "AgendaAlchemy | Sign Up" }
 
 const SignUpPage = () => {
   return (
