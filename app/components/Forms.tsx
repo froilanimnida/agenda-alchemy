@@ -1,9 +1,11 @@
 'use client'
 import Link from 'next/link';
 import React, { useState, useRef } from 'react'
-import { FaCircleArrowRight } from "react-icons/fa6";
+import { FaCircleArrowRight } from "react-icons/fa6"
+import { useRouter } from 'next/navigation';
 
 const FormComponent = ({mode}: {mode: string}) => {
+  const router = useRouter()
   const [name, setName] = useState('')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -80,6 +82,7 @@ const FormComponent = ({mode}: {mode: string}) => {
 
   const handleSignIn = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    router.push('/app')
   }
   
 
@@ -140,7 +143,7 @@ const FormComponent = ({mode}: {mode: string}) => {
             <FaCircleArrowRight />
           </button>
           <div className='divider divider-horizontal'>OR</div>
-          <Link className='link' href={'/log-in'}>Sign Up instead</Link>
+          <Link className='link' href={'/sign-up'}>Sign Up instead</Link>
         </div>
       </form>
     )

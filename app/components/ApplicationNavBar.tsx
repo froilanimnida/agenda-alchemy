@@ -1,6 +1,5 @@
 import React from 'react'
-import { IoSettings } from "react-icons/io5"
-import { FaUserCircle } from "react-icons/fa"
+import { ProfileIcon, SettingsIcon } from './NavbarComponent'
 
 const ApplicationNavBar = () => {
   return (
@@ -9,12 +8,12 @@ const ApplicationNavBar = () => {
       <ul className='flex justify-center items-center gap-5'>
         <li>
           <div className="tooltip tooltip-bottom tooltip-primary" data-tip="Settings">
-            <IoSettings size={ 20 }/>
+            <SettingsIcon />
           </div>
         </li>
         <li>
           <div className="tooltip tooltip-bottom tooltip-primary" data-tip="Profile">
-            <FaUserCircle size={ 20 }/>
+            <ProfileIcon />
           </div>
         </li>
       </ul>
