@@ -40,7 +40,7 @@ const DeleteAccountPage = () => {
 
         <div>
           <h1>We appreciate your feedback!</h1>
-          <p>If you have any feedback about why you're deleting your account, we&apos;d love to hear it. Your feedback helps us improve our app for future users. You can share your feedback by sendng a message to this <a href='mailto:froilanaquino1@gmail.com'>email.</a></p>
+          <p>If you have any feedback about why you&apos;re deleting your account, we&apos;d love to hear it. Your feedback helps us improve our app for future users. You can share your feedback by sendng a message to this <a href='mailto:froilanaquino1@gmail.com'>email.</a></p>
         </div>
         
         <div className='flex flex-col gap-5'>
