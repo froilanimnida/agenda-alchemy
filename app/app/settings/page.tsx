@@ -6,6 +6,9 @@ import { RxExit } from "react-icons/rx"
 import Image from 'next/image'
 import SettingsIcon from '../../../public/images/settings-icon.png'
 import Link from 'next/link'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = { title: "AgendaAlchemy | Settings" }
 
 const SettingsComponent = () => {
   return (

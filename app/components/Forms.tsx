@@ -144,7 +144,7 @@ const FormComponent = ({mode}: {mode: string}) => {
 
   if (mode === 'sign-up') {
     return (
-      <form className='border p-5 rounded-2xl' onSubmit={handleSignUp}>
+      <form className='border p-5 rounded-2xl flex flex-col gap-5' onSubmit={handleSignUp}>
         <div>
           {signUpFields.map(field => {
             return (
@@ -199,7 +199,7 @@ const FormComponent = ({mode}: {mode: string}) => {
 
   else {
     return (
-      <form className='border p-5 rounded-2xl' onSubmit={handleSignIn}>
+      <form className='border p-5 rounded-2xl flex flex-col gap-5' onSubmit={handleSignIn}>
         <div>
         {signInFields.map(field => {
             return (

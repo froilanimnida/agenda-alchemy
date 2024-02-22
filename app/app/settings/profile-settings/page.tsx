@@ -3,6 +3,9 @@ import React from 'react'
 import ProfileSettingsIcon from '../../../../public/images/profile-settings-icon.png'
 import Image from 'next/image'
 import FormComponent from '@/app/components/Forms'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = { title: "AgendaAlchemy | Profile Settings" }
 
 const ProfileSettings = () => {
   return (
