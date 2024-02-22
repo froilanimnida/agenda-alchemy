@@ -3,6 +3,7 @@ import Link from 'next/link';
 import React, { useState, useRef } from 'react'
 import { FaCircleArrowRight } from "react-icons/fa6"
 import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
 
 const FormComponent = ({mode}: {mode: string}) => {
   const router = useRouter()
@@ -139,6 +140,7 @@ const FormComponent = ({mode}: {mode: string}) => {
 
   const handleEdits = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    toast.success('Your edits have been saved.')
   }
   
 
@@ -173,7 +175,7 @@ const FormComponent = ({mode}: {mode: string}) => {
 
   else if (mode === 'edit-info') {
     return (
-      <form className='border p-5 rounded-2xl flex flex-col gap-5'>
+      <form  onSubmit={handleEdits} className='border p-5 rounded-2xl flex flex-col gap-5'>
         <div>
           {editInfoFields.map(field => {
             return (
