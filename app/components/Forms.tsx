@@ -11,11 +11,20 @@ const FormComponent = ({mode}: {mode: string}) => {
   const [password, setPassword] = useState('')
   const [signInUseraname, setSignInUsername] = useState('')
   const [signInPassword, setSignInPassword] = useState('')
+  const [newName, setNewName] = useState('')
+  const [newUsername, setNewUsername] = useState('')
+  const [currentPassword, setCurrentPassword] = useState('')
+  const [newPassword, setNewPassword] = useState('')
   const nameRef = useRef<HTMLInputElement>(null)
   const usernameRef = useRef<HTMLInputElement>(null)
   const passwordRef = useRef<HTMLInputElement>(null)
   const signInUsernameRef = useRef<HTMLInputElement>(null)
   const signInPasswordRef = useRef<HTMLInputElement>(null)
+  const newNameRef = useRef<HTMLInputElement>(null)
+  const newUsernameRef = useRef<HTMLInputElement>(null)
+  const currentPasswordRef = useRef<HTMLInputElement>(null)
+  const newPasswordRef = useRef<HTMLInputElement>(null)
+
   const signUpFields = [
     {
       id: 1,
@@ -75,6 +84,49 @@ const FormComponent = ({mode}: {mode: string}) => {
     }
   ]
 
+  const editInfoFields = [
+    {
+      id: 1,
+      label: 'Your new name: ',
+      type: 'text',
+      placeholder: 'Taylor Swift',
+      ref: newNameRef,
+      onchange: (e: { target: { value: string; }; }) => {
+        setNewName(e.target.value)
+      }
+    },
+    {
+      id: 2,
+      label: 'Your new username: ',
+      type: 'text',
+      placeholder: 'taylorswift1989',
+      ref: newUsernameRef,
+      onchange: (e: { target: { value: string; }; }) => {
+        setNewUsername(e.target.value)
+      }
+    },
+    {
+      id: 3,
+      label: 'Your current password:',
+      type: 'password',
+      placeholder: '********',
+      ref: currentPasswordRef,
+      onchange: (e: { target: { value: string; }; }) => {
+        setCurrentPassword(e.target.value)
+      }
+    },
+    {
+      id: 4,
+      label: 'Your new password: ',
+      type: 'password',
+      placeholder: '********',
+      ref: newPasswordRef,
+      onchange: (e: { target: { value: string; }; }) => {
+        setNewPassword(e.target.value)
+      }
+    }
+  ]
+
   const handleSignUp = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     
@@ -83,6 +135,10 @@ const FormComponent = ({mode}: {mode: string}) => {
   const handleSignIn = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     router.push('/app')
+  }
+
+  const handleEdits = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
   }
   
 
@@ -97,9 +153,6 @@ const FormComponent = ({mode}: {mode: string}) => {
                 <span className="label-text">{field.label}</span>
               </div>
               <input onChange={field.onchange} ref={ field.ref } type={field.type} placeholder={field.placeHolder} className="input input-bordered w-full max-w-xs" />
-              <div className="label">
-                <span className="label-text-alt"></span>
-              </div>
             </label>
           )
           })}
@@ -118,6 +171,32 @@ const FormComponent = ({mode}: {mode: string}) => {
     )
   }
 
+  else if (mode === 'edit-info') {
+    return (
+      <form className='border p-5 rounded-2xl flex flex-col gap-5'>
+        <div>
+          {editInfoFields.map(field => {
+            return (
+              <label key={field.id} className="form-control w-full max-w-xs">
+                <div className="label">
+                  <span className="label-text">{field.label}</span>
+                </div>
+                <input onChange={field.onchange} ref={ field.ref } type={field.type} placeholder={field.placeholder} className="input input-bordered w-full max-w-xs" />
+              </label>
+            )
+          })}
+        </div>
+
+        <div className='flex flex-col gap-3 justify-between items-center'>
+          <button type='submit' className='btn btn-primary'>
+            Okay
+            <FaCircleArrowRight />
+          </button>
+        </div>
+      </form>
+    )
+  }
+
   else {
     return (
       <form className='border p-5 rounded-2xl' onSubmit={handleSignIn}>
@@ -129,9 +208,6 @@ const FormComponent = ({mode}: {mode: string}) => {
                 <span className="label-text">{field.label}</span>
               </div>
               <input onChange={field.onchange} ref={ field.ref } type={field.type} placeholder={field.placeHolder} className="input input-bordered w-full max-w-xs" />
-              <div className="label">
-                <span className="label-text-alt"></span>
-              </div>
             </label>
           )
           })}
