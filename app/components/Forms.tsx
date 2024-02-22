@@ -197,7 +197,6 @@ const FormComponent = ({mode}: {mode: string}) => {
     )
   }
 
-
   else {
     return (
       <form className='border p-5 rounded-2xl' onSubmit={handleSignIn}>
