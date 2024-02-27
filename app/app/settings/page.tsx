@@ -17,7 +17,7 @@ const SettingsComponent = () => {
       <div className='flex-col flex items-center justify-center'>
         <h1 className='text-center font-bold text-2xl'>Settings</h1>
         <Image
-          className='p-5' alt='Image of a 3 gears with magnifying glass along with it'
+          className='p-10' alt='Image of a 3 gears with magnifying glass along with it'
           src={ SettingsIcon }
           priority={ true }/>
       </div>

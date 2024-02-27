@@ -15,7 +15,7 @@ const SignUpPage = () => {
         <Image 
           priority={true}
           src={ SignUpIcon }
-          className='p-7' alt='Image of generic icon of a person' />
+          className='p-10' alt='Image of generic icon of a person' />
 
         <h1 className='text-center font-bold'>Create an Account</h1>
         <FormComponent mode="sign-up" />

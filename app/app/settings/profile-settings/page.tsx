@@ -12,7 +12,7 @@ const ProfileSettings = () => {
     <main className='p-5 flex flex-col gap-10'>
       <Logo />
       <Image
-        className='p-5'
+        className='p-10'
         priority={true}
         src={ ProfileSettingsIcon }
         alt='A color pink paper with check icon on top of it.' />

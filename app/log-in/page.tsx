@@ -15,7 +15,7 @@ const Login = () => {
         <Image 
           priority={true}
           src={ LoginIcon }
-          className='p-7' alt='Image of generic icon of a person' />
+          className='p-10' alt='Image of generic icon of a person' />
         <h1 className='text-center font-bold'>Login using your account.</h1>
         <FormComponent mode="log-in" />
       </main>
