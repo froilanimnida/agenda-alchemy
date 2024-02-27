@@ -1,4 +1,5 @@
 [![njsscan sarif](https://github.com/froilaaaaan1/agenda-alchemy/actions/workflows/njsscan.yml/badge.svg?branch=master)](https://github.com/froilaaaaan1/agenda-alchemy/actions/workflows/njsscan.yml)
+[![NodeJS with Grunt](https://github.com/froilaaaaan1/agenda-alchemy/actions/workflows/npm-grunt.yml/badge.svg)](https://github.com/froilaaaaan1/agenda-alchemy/actions/workflows/npm-grunt.yml)
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
