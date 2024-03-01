@@ -13,7 +13,7 @@ const SignUpPage = () => {
       <Logo />
       <main className='p-5 gap-5 flex flex-col'>
         <Image 
-          priority={true}
+          priority={ true }
           src={ SignUpIcon }
           className='p-10' alt='Image of generic icon of a person' />
 

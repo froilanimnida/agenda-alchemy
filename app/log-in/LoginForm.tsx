@@ -7,13 +7,16 @@ import { useRouter } from "next/navigation"
 
 const LoginForm = () => {
   const router = useRouter()
-  const signInUsernameRef = useRef<HTMLInputElement>(null)
-  const signInPasswordRef = useRef<HTMLInputElement>(null)
-  const [signInUseraname, setSignInUsername] = useState('')
+  const [signInUsername, setSignInUsername] = useState('')
   const [signInPassword, setSignInPassword] = useState('')
   const handleSignIn = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    router.push('/app')
+    if (signInUsername.length == 0)
+      toast.error('Username field is empty.')
+    else if (signInPassword.length == 0)
+      toast.error('Password field is empty.')
+    else
+      router.push('/app')
   }
   const signInFields = [
     {
@@ -21,7 +24,6 @@ const LoginForm = () => {
       label: 'Username:',
       type: 'text',
       placeHolder: 'johndoe123',
-      ref: signInUsernameRef,
       onchange: (e: { target: { value: string; }; }) => {
         setSignInUsername(e.target.value)
       }
@@ -32,7 +34,6 @@ const LoginForm = () => {
       label: 'Password:',
       type: 'password',
       placeHolder: '********',
-      ref: signInPasswordRef,
       onchange: (e: { target: { value: string; }; }) => {
         setSignInPassword(e.target.value)
       }
@@ -47,7 +48,7 @@ const LoginForm = () => {
               <div className="label">
                 <span className="label-text">{field.label}</span>
               </div>
-              <input onChange={field.onchange} ref={ field.ref } type={field.type} placeholder={field.placeHolder} className="input input-bordered w-full max-w-xs" />
+              <input onChange={field.onchange} type={field.type} placeholder={field.placeHolder} className="input input-bordered w-full max-w-xs" />
             </label>
           )
           })}
