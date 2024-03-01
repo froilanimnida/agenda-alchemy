@@ -1,7 +1,7 @@
 import React from 'react'
 import LoginIcon from '../../public/images/login-icon.png'
 import Image from 'next/image'
-import FormComponent from '../components/Forms'
+import LoginForm from './LoginForm'
 import Logo from '../components/Logo'
 import type { Metadata } from "next";
 
@@ -17,7 +17,7 @@ const Login = () => {
           src={ LoginIcon }
           className='p-10' alt='Image of generic icon of a person' />
         <h1 className='text-center font-bold'>Login using your account.</h1>
-        <FormComponent mode="log-in" />
+        <LoginForm />
       </main>
     </div>
   )

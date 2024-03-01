@@ -2,7 +2,7 @@ import Logo from '@/app/components/Logo'
 import React from 'react'
 import ProfileSettingsIcon from '../../../../public/images/profile-settings-icon.png'
 import Image from 'next/image'
-import FormComponent from '@/app/components/Forms'
+import EditInfoForm from './EditInfoForm'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = { title: "AgendaAlchemy | Profile Settings" }
@@ -17,7 +17,7 @@ const ProfileSettings = () => {
         src={ ProfileSettingsIcon }
         alt='A color pink paper with check icon on top of it.' />
       <h1 className='text-center font-bold'>Edit your information here.</h1>
-      <FormComponent mode='edit-info' />
+      <EditInfoForm />
     </main>
   )
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import Logo from '../components/Logo'
 import SignUpIcon from '../../public/images/sign-up-icon.png'
 import Image from 'next/image'
-import FormComponent from '../components/Forms'
+import SignUpForm from './SignUpForm'
 import type { Metadata } from "next";
 
 export const metadata: Metadata = { title: "AgendaAlchemy | Sign Up" }
@@ -18,7 +18,7 @@ const SignUpPage = () => {
           className='p-10' alt='Image of generic icon of a person' />
 
         <h1 className='text-center font-bold'>Create an Account</h1>
-        <FormComponent mode="sign-up" />
+        <SignUpForm />
       </main>
     </div>
   )
