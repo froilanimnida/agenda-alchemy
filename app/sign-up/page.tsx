@@ -3,7 +3,7 @@ import Logo from '../components/Logo'
 import SignUpIcon from '../../public/images/sign-up-icon.png'
 import Image from 'next/image'
 import SignUpForm from './SignUpForm'
-import type { Metadata } from "next";
+import type { Metadata } from "next"
 
 export const metadata: Metadata = { title: "AgendaAlchemy | Sign Up" }
 

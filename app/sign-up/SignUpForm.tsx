@@ -1,13 +1,18 @@
 'use client'
 import { FaCircleArrowRight } from "react-icons/fa6"
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import toast from 'react-hot-toast'
+import { supabase } from "@/utils/database/supabase"
 
-const SignUpForm = () => {
+const SignUpForm = async () => {
   const [name, setName] = useState('')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  // const fetchUser = await () => {
+  //   let { users, error } = supabase.from('users').select('*').eq('username')
+  // }
+
   const signUpFields = [
     {
       id: 1,
