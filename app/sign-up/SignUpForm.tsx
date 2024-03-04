@@ -3,15 +3,13 @@ import { FaCircleArrowRight } from "react-icons/fa6"
 import React, { useState } from 'react'
 import Link from 'next/link'
 import toast from 'react-hot-toast'
+import { redirect } from "next/navigation"
 import { supabase } from "@/utils/database/supabase"
 
-const SignUpForm = async () => {
+const SignUpForm = () => {
   const [name, setName] = useState('')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  // const fetchUser = await () => {
-  //   let { users, error } = supabase.from('users').select('*').eq('username')
-  // }
 
   const signUpFields = [
     {
@@ -58,7 +56,13 @@ const SignUpForm = async () => {
     else if (password.length < 8)
       toast.error('Password must be 8 characters long.')
     else {
-      console.log(name + ' ' + password + ' ' + username);
+      console.log(name + ' ' + password + ' ' + username)
+      const addUserPromise = addUserToDatabase(name, username, password)
+      toast.promise(addUserPromise, {
+        loading: 'Loading',
+        success: 'Success',
+        error: (error) => `${error.message}`
+      })
     }
   }
   return (
@@ -87,6 +91,24 @@ const SignUpForm = async () => {
         
       </form>
   )
+}
+
+const addUserToDatabase = async (name: string, username: string, password: string) => {
+  const crypto = require('crypto')
+  const hashedPassword = crypto.createHash('sha256').update(password).digest('base64')
+  const { data, error } = await supabase
+    .from('users')
+    .insert([
+      { name: name, username: username, password: hashedPassword },
+    ])
+    .select()
+  console.log(error);
+  if (error?.message.startsWith('duplicate')) {
+    throw new Error('Username already taken');
+  }
+  else if (data?.length == 1) {
+    redirect('/app/log-in')
+  }
 }
 
 export default SignUpForm

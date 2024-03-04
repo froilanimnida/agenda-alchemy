@@ -1,6 +1,7 @@
 'use client'
 import { FaCircleArrowRight } from "react-icons/fa6"
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
+import { supabase } from "@/utils/database/supabase"
 import Link from 'next/link'
 import toast from 'react-hot-toast'
 import { useRouter } from "next/navigation"
@@ -15,8 +16,14 @@ const LoginForm = () => {
       toast.error('Username field is empty.')
     else if (signInPassword.length == 0)
       toast.error('Password field is empty.')
-    else
-      router.push('/app')
+    else {
+      const loginPromise = logInFunction(signInUsername, signInPassword)
+      toast.promise(loginPromise, {
+        loading: 'Connecting',
+        success: 'Successsfully Logged In',
+        error: (error) => `${error.message}`
+      })
+    }
   }
   const signInFields = [
     {
@@ -64,6 +71,15 @@ const LoginForm = () => {
         </div>
       </form>
   )
+}
+
+const logInFunction = async (username: string, password: string) => {
+  const crypto = require('crypto')
+  const hashedPassword = crypto.createHash('sha256').update(password).digest('base64')
+  let { data: users, error } = await supabase.from('users')
+    .select('*').eq('username', username).eq('password', hashedPassword)
+  console.log('Data:', users)
+  console.log('Error:', error)
 }
 
 export default LoginForm
