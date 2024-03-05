@@ -3,13 +3,14 @@ import { FaCircleArrowRight } from "react-icons/fa6"
 import React, { useState } from 'react'
 import Link from 'next/link'
 import toast from 'react-hot-toast'
-import { redirect } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { supabase } from "@/utils/database/supabase"
 
 const SignUpForm = () => {
   const [name, setName] = useState('')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const router = useRouter()
 
   const signUpFields = [
     {
@@ -60,9 +61,9 @@ const SignUpForm = () => {
       const addUserPromise = addUserToDatabase(name, username, password)
       toast.promise(addUserPromise, {
         loading: 'Loading',
-        success: 'Success',
+        success: 'Success, you may login now.',
         error: (error) => `${error.message}`
-      })
+      }).then(() => router.push('/log-in'))
     }
   }
   return (
@@ -105,9 +106,6 @@ const addUserToDatabase = async (name: string, username: string, password: strin
   console.log(error);
   if (error?.message.startsWith('duplicate')) {
     throw new Error('Username already taken');
-  }
-  else if (data?.length == 1) {
-    redirect('/app/log-in')
   }
 }
 
