@@ -17,14 +17,24 @@ const LoginForm = () => {
     else if (signInPassword.length == 0)
       toast.error('Password field is empty.')
     else {
-      const loginPromise = logInFunction(signInUsername, signInPassword)
+      const loginPromise = logInFunction(signInUsername, signInPassword);
       toast.promise(loginPromise, {
         loading: 'Connecting',
-        success: 'Successsfully Logged In',
+        success: 'Successfully Logged In...',
         error: (error) => `${error.message}`
       })
+      .then((result) => {
+        if (result && result[0]) {
+          sessionStorage.setItem('name', result[0].name)
+          sessionStorage.setItem('user_id', result[0].id)
+          sessionStorage.setItem('username', result[0].username)
+          router.push('/app')
+        }
+      })
+      .catch(() => {})
     }
   }
+
   const signInFields = [
     {
       id: 1,
@@ -35,7 +45,6 @@ const LoginForm = () => {
         setSignInUsername(e.target.value)
       }
     },
-
     {
       id: 2,
       label: 'Password:',
@@ -46,11 +55,12 @@ const LoginForm = () => {
       }
     }
   ]
+  
   return (
     <form className='border p-5 rounded-2xl flex flex-col gap-5' onSubmit={handleSignIn}>
-        <div>
+      <div>
         {signInFields.map(field => {
-            return (
+          return (
             <label key={field.id} className="form-control w-full max-w-xs">
               <div className="label">
                 <span className="label-text">{field.label}</span>
@@ -58,28 +68,33 @@ const LoginForm = () => {
               <input onChange={field.onchange} type={field.type} placeholder={field.placeHolder} className="input input-bordered w-full max-w-xs" />
             </label>
           )
-          })}
-        </div>
+        })}
+      </div>
 
-        <div className='flex flex-row justify-between items-center'>
-          <button type='submit' className='btn'>
-            Log In
-            <FaCircleArrowRight />
-          </button>
-          <div className='divider divider-horizontal'>OR</div>
-          <Link className='link' href={'/sign-up'}>Sign Up instead</Link>
-        </div>
-      </form>
+      <div className='flex flex-row justify-between items-center'>
+        <button type='submit' className='btn'>
+          Log In
+          <FaCircleArrowRight />
+        </button>
+        <div className='divider divider-horizontal'>OR</div>
+        <Link className='link' href={'/sign-up'}>Sign Up instead</Link>
+      </div>
+    </form>
   )
 }
 
 const logInFunction = async (username: string, password: string) => {
   const crypto = require('crypto')
   const hashedPassword = crypto.createHash('sha256').update(password).digest('base64')
-  let { data: users, error } = await supabase.from('users')
-    .select('*').eq('username', username).eq('password', hashedPassword)
-  console.log('Data:', users)
-  console.log('Error:', error)
+  let { data: users, error } = await supabase
+    .from('users')
+    .select('*')
+    .eq('username', username)
+    .eq('password', hashedPassword)
+  
+  if (users?.length === 0)
+    throw new Error('Invalid username or password');
+  return users
 }
 
 export default LoginForm

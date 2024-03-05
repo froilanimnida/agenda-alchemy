@@ -57,7 +57,6 @@ const SignUpForm = () => {
     else if (password.length < 8)
       toast.error('Password must be 8 characters long.')
     else {
-      console.log(name + ' ' + password + ' ' + username)
       const addUserPromise = addUserToDatabase(name, username, password)
       toast.promise(addUserPromise, {
         loading: 'Loading',
@@ -68,29 +67,28 @@ const SignUpForm = () => {
   }
   return (
     <form className='border p-5 rounded-2xl flex flex-col gap-5' onSubmit={handleSignUp}>
-        <div className='flex flex-col gap-5'>
-          {signUpFields.map(field => {
-            return (
-            <label key={field.id} className="form-control w-full max-w-xs">
-              <div className="label">
-                <span className="label-text">{field.label}</span>
-              </div>
-              <input onChange={field.onchange} type={field.type} placeholder={field.placeHolder} className="input input-bordered input-primary w-full max-w-xs" />
-            </label>
-          )
-          })}
-        </div>
+      <div className='flex flex-col gap-5'>
+        {signUpFields.map(field => {
+          return (
+          <label key={field.id} className="form-control w-full max-w-xs">
+            <div className="label">
+              <span className="label-text">{field.label}</span>
+            </div>
+            <input onChange={field.onchange} type={field.type} placeholder={field.placeHolder} className="input input-bordered input-primary w-full max-w-xs" />
+          </label>
+        )
+        })}
+      </div>
 
-        <div className='flex flex-row justify-between items-center'>
-          <button type='submit' className='btn'>
-            Sign Up
-            <FaCircleArrowRight />
-          </button>
-          <div className='divider divider-horizontal'>OR</div>
-          <Link className='link' href={'/log-in'}>Login instead</Link>
-        </div>
-        
-      </form>
+      <div className='flex flex-row justify-between items-center'>
+        <button type='submit' className='btn'>
+          Sign Up
+          <FaCircleArrowRight />
+        </button>
+        <div className='divider divider-horizontal'>OR</div>
+        <Link className='link' href={'/log-in'}>Login instead</Link>
+      </div>
+    </form>
   )
 }
 
@@ -103,7 +101,6 @@ const addUserToDatabase = async (name: string, username: string, password: strin
       { name: name, username: username, password: hashedPassword },
     ])
     .select()
-  console.log(error);
   if (error?.message.startsWith('duplicate')) {
     throw new Error('Username already taken');
   }
