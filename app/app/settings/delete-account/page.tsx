@@ -2,7 +2,7 @@ import Logo from '@/app/components/Logo'
 import Image from 'next/image'
 import React from 'react'
 import DeletionWarningImage from '../../../../public/images/warning-delete.png'
-import AccountDeletionButtons from '@/app/components/AccountDeletionButtons'
+import AccountDeletionButtons from './AccountDeletionButtons'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = { title: "AgendaAlchemy | Delete Account" }
