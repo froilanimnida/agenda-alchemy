@@ -22,37 +22,32 @@ const LoginForm = () => {
         loading: 'Connecting',
         success: 'Successfully Logged In...',
         error: (error) => `${error.message}`
-      })
-      .then((result) => {
-        if (result && result[0]) {
-          sessionStorage.setItem('name', result[0].name)
-          sessionStorage.setItem('user_id', result[0].id)
-          sessionStorage.setItem('username', result[0].username)
+      }).then((data) => {
+        if (data && data[0]) {
+          sessionStorage.setItem('name', data[0].name)
+          sessionStorage.setItem('user_id', data[0].user_id)
+          sessionStorage.setItem('username', data[0].email)
           router.push('/app')
         }
       })
-      .catch(() => {})
+      .catch(e => {})
     }
   }
 
   const signInFields = [
     {
       id: 1,
-      label: 'Username:',
+      label: 'Email: ',
       type: 'text',
       placeHolder: 'johndoe123',
-      onchange: (e: { target: { value: string; }; }) => {
-        setSignInUsername(e.target.value)
-      }
+      onchange: (e: { target: { value: string } }) => setSignInUsername(e.target.value)
     },
     {
       id: 2,
-      label: 'Password:',
+      label: 'Password: ',
       type: 'password',
       placeHolder: '********',
-      onchange: (e: { target: { value: string; }; }) => {
-        setSignInPassword(e.target.value)
-      }
+      onchange: (e: { target: { value: string } }) => setSignInPassword(e.target.value)
     }
   ]
   
@@ -83,16 +78,11 @@ const LoginForm = () => {
   )
 }
 
-const logInFunction = async (username: string, password: string) => {
+const logInFunction = async (email: string, password: string) => {
   const crypto = require('crypto')
   const hashedPassword = crypto.createHash('sha256').update(password).digest('base64')
-  let { data: users, error } = await supabase
-    .from('users')
-    .select('*')
-    .eq('username', username)
-    .eq('password', hashedPassword)
-  
-  if (users?.length === 0)
+  let { data: users, error } = await supabase.from('users').select('*').eq('email', email).eq('password', hashedPassword)
+  if (users?.length == 0)
     throw new Error('Invalid username or password');
   return users
 }

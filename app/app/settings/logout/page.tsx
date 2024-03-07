@@ -3,6 +3,7 @@ import React from 'react'
 import Image from 'next/image'
 import LogoutIcon from '../../../../public/images/logout.png'
 import Link from 'next/link'
+import LogOutButton from './logOutButton'
 
 const Logout = () => {
   return (
@@ -18,8 +19,8 @@ const Logout = () => {
       <div className='flex gap-5 flex-col justify-center items-center'>
         <h1>Are you sure you want to log out?</h1>
         <div className='flex flex-row justify-around'>
-          <Link className='btn btn-error' href={'/log-in'}>Okay</Link>
-          <Link className='btn btn-ghost' href={'/app'}>Cancel</Link>
+          <LogOutButton />
+          <Link prefetch={ true } className='btn btn-ghost' href={'/app'}>Cancel</Link>
         </div>
       </div>
     </main>

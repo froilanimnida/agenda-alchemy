@@ -1,9 +1,11 @@
 import Logo from '@/app/components/Logo'
 import Image from 'next/image'
-import React from 'react'
+import React, { Suspense } from 'react'
 import DeletionWarningImage from '../../../../public/images/warning-delete.png'
 import AccountDeletionButtons from './AccountDeletionButtons'
 import { Metadata } from 'next'
+import ImageSkeleton from '@/app/components/ImageSkeleton'
+import Link from 'next/link'
 
 export const metadata: Metadata = { title: "AgendaAlchemy | Delete Account" }
 
@@ -11,11 +13,13 @@ const DeleteAccountPage = () => {
   return (
     <main className='p-5 flex flex-col gap-10'>
       <Logo />
-      <Image
-        className='p-5'
-        priority={true}
-        src={ DeletionWarningImage }
-        alt='Yellow trangle with exclamation inside of it'/>
+      <Suspense fallback={<ImageSkeleton/>}>
+        <Image
+          className='p-5'
+          priority={true}
+          src={ DeletionWarningImage }
+          alt='Yellow trangle with exclamation inside of it'/>
+      </Suspense>
 
       <h1 className='text-center font-bold text-xl'>Please be certain.</h1>
 
@@ -59,6 +63,7 @@ const DeleteAccountPage = () => {
 
       <div className='flex flex-row justify-between p-3'>
         <AccountDeletionButtons />
+        <Link className='btn btn-outline' href={'/app/settings'}>Cancel</Link>
       </div>
     </main>
   )

@@ -7,57 +7,39 @@ import { useRouter } from "next/navigation"
 import { supabase } from "@/utils/database/supabase"
 
 const SignUpForm = () => {
-  const [name, setName] = useState('')
-  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const router = useRouter()
 
   const signUpFields = [
     {
       id: 1,
-      label: 'Your name:',
+      label: 'Email: ',
       type: 'text',
-      placeHolder: 'John Doe',
-      onchange: (e: { target: { value: string; }; }) => {
-        setName(e.target.value)
-      }
+      placeHolder: 'johndoe@outlook.com',
+      onchange: (e: { target: { value: string } }) => setEmail(e.target.value)
     },
-
     {
       id: 2,
-      label: 'Username: ',
-      type: 'text',
-      placeHolder: 'johndoe1989',
-      onchange: (e: { target: { value: string; }; }) => {
-        setUsername(e.target.value)
-      }
-    },
-
-    {
-      id: 3,
       label: 'Password:',
       type: 'password',
       placeHolder: '********',
-      onchange: (e: { target: { value: string; }; }) => {
-        setPassword(e.target.value)
-      }
-      
+      onchange: (e: { target: { value: string } }) => setPassword(e.target.value)
     }
   ]
   const handleSignUp = (e: React.FormEvent<HTMLFormElement>) => {
+    var emailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
     e.preventDefault()
-    if (name === '')
-      toast.error('Name must not be empty.')
-    else if (username === '') 
-      toast.error('Username must not be empty')
-    else if (username.length < 3)
-      toast.error('Username must be 3 characters long')
+    if (email === '') 
+      toast.error('Email must not be empty')
+    else if (!emailRegex.test(email))
+      toast.error('Not a valid email')
     else if (password === '')
       toast.error('Password must not be empty.')
     else if (password.length < 8)
       toast.error('Password must be 8 characters long.')
     else {
-      const addUserPromise = addUserToDatabase(name, username, password)
+      const addUserPromise = addUserToDatabase(email, password)
       toast.promise(addUserPromise, {
         loading: 'Loading',
         success: 'Success, you may login now.',
@@ -86,21 +68,16 @@ const SignUpForm = () => {
           <FaCircleArrowRight />
         </button>
         <div className='divider divider-horizontal'>OR</div>
-        <Link className='link' href={'/log-in'}>Login instead</Link>
+        <Link prefetch={true} className='link' href={'/log-in'}>Login instead</Link>
       </div>
     </form>
   )
 }
 
-const addUserToDatabase = async (name: string, username: string, password: string) => {
+const addUserToDatabase = async (email: string, password: string) => {
   const crypto = require('crypto')
   const hashedPassword = crypto.createHash('sha256').update(password).digest('base64')
-  const { data, error } = await supabase
-    .from('users')
-    .insert([
-      { name: name, username: username, password: hashedPassword },
-    ])
-    .select()
+  const { data, error } = await supabase.from('users').insert([{ email: email, password: hashedPassword },]).select()
   if (error?.message.startsWith('duplicate')) {
     throw new Error('Username already taken');
   }

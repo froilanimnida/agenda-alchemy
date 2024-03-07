@@ -17,20 +17,15 @@ const AccountDeletionButtons = () => {
         sessionStorage.clear()
       })
   }
-  return (
-    <>
-      <button onClick={handleDeletion} className='btn btn-error'>Delete Account</button>
-      <button className='btn btn-outline'>Cancel</button>
-    </>
-  )
+  return <button onClick={handleDeletion} className='btn btn-error'>Delete Account</button>
 }
 
 const deleteAccount = async () => {
-  let id = sessionStorage.getItem('user_id')
+  let user_id = sessionStorage.getItem('user_id')
   const { error } = await supabase
     .from('users')
     .delete()
-    .eq('id', id)
+    .eq('user_id', user_id)
   console.log(error)
   if (error == null)
     Promise.resolve()

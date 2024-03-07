@@ -13,7 +13,7 @@ export type Database = {
         Row: {
           content: string
           created_at: string
-          id: number
+          note_id: number
           title: string
           updated_at: string
           user_id: number
@@ -21,7 +21,7 @@ export type Database = {
         Insert: {
           content?: string
           created_at?: string
-          id?: number
+          note_id?: number
           title?: string
           updated_at?: string
           user_id: number
@@ -29,7 +29,7 @@ export type Database = {
         Update: {
           content?: string
           created_at?: string
-          id?: number
+          note_id?: number
           title?: string
           updated_at?: string
           user_id?: number
@@ -40,31 +40,31 @@ export type Database = {
             columns: ["user_id"]
             isOneToOne: false
             referencedRelation: "users"
-            referencedColumns: ["id"]
+            referencedColumns: ["user_id"]
           }
         ]
       }
       users: {
         Row: {
           created_at: string
-          id: number
+          email: string
           name: string
           password: string
-          username: string
+          user_id: number
         }
         Insert: {
           created_at?: string
-          id?: number
+          email: string
           name: string
           password: string
-          username: string
+          user_id?: number
         }
         Update: {
           created_at?: string
-          id?: number
+          email?: string
           name?: string
           password?: string
-          username?: string
+          user_id?: number
         }
         Relationships: []
       }
