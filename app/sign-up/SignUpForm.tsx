@@ -68,7 +68,7 @@ const SignUpForm = () => {
           <FaCircleArrowRight />
         </button>
         <div className='divider divider-horizontal'>OR</div>
-        <Link prefetch={true} className='link' href={'/log-in'}>Login instead</Link>
+        <Link className='link' href={'/log-in'}>Login instead</Link>
       </div>
     </form>
   )

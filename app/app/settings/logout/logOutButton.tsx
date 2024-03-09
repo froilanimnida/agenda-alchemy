@@ -6,7 +6,7 @@ const LogOutButton = () => {
   const clearSession = () => {
     sessionStorage.clear()
   }
-  return <Link onClick={clearSession} prefetch={ true } className='btn btn-error' href={'/log-in'}>Okay</Link>
+  return <Link onClick={clearSession} className='btn btn-error' href={'/log-in'}>Okay</Link>
 }
 
 export default LogOutButton

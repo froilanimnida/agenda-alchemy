@@ -14,7 +14,7 @@ export default function Home() {
           <h1 className='text-center font-medium'>Jot Down Notes like ever before.</h1>
         </div>
       </main>
-      <Link prefetch={true} className='btn shadow-lg' href={'/sign-up'}>
+      <Link className='btn shadow-lg' href={'/sign-up'}>
         Get Started
         <FaCircleArrowRight />
       </Link>

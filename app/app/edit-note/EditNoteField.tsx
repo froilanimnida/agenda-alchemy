@@ -28,7 +28,7 @@ const EditNoteField = (params: {noteId: string}) => {
       }
     }
     fetchNote()
-  }, [])
+  }, [params.noteId])
   const submitUpdated = (e: React.FormEvent) => {
     e.preventDefault()
     const saved = reflectTheUpdateOnDatabase(params.noteId, titleValue, contentValue)
@@ -39,6 +39,7 @@ const EditNoteField = (params: {noteId: string}) => {
       toast.error('Something went wrong')
     })
   }
+  console.log(params.noteId.toString())
 
   return (
     <form className='flex flex-col gap-5 justify-center items-center' onSubmit={submitUpdated}>

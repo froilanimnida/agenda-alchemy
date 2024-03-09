@@ -20,7 +20,7 @@ const Logout = () => {
         <h1>Are you sure you want to log out?</h1>
         <div className='flex flex-row justify-around'>
           <LogOutButton />
-          <Link prefetch={ true } className='btn btn-ghost' href={'/app'}>Cancel</Link>
+          <Link className='btn btn-ghost' href={'/app'}>Cancel</Link>
         </div>
       </div>
     </main>

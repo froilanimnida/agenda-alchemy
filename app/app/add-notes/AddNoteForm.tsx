@@ -1,10 +1,13 @@
 'use client'
 import { supabase } from '@/utils/database/supabase'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
-const NoteTitleForm = () => {
-  const userId = sessionStorage.getItem('user_id') ?? '';
+const AddNoteForm = () => {
+  var [userId, setUserId] = useState('')
+  useEffect(() => {
+    setUserId(sessionStorage.getItem('user_id') ?? '')
+  }, [])
   const [title, setTitle] = useState('Untitled note');
   const [content, setContent] = useState('');
   const handleNewNotes = (e: React.FormEvent) => {
@@ -35,4 +38,4 @@ const addNotesToDatabase = async (userId: string, title: string, content: string
   
 }
 
-export default NoteTitleForm
+export default AddNoteForm

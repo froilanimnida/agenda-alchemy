@@ -24,7 +24,7 @@ const SettingsComponent = () => {
       <div>
         <ul className='gap-5 flex flex-col'>
           <li>
-            <Link prefetch={ true } className='flex flex-row gap-3 items-center' href={'/app/settings/profile-settings'}>
+            <Link className='flex flex-row gap-3 items-center' href={'/app/settings/profile-settings'}>
               <RiUserSettingsLine />
               Profile Settings
             </Link>
@@ -36,7 +36,7 @@ const SettingsComponent = () => {
             </Link>
           </li>
           <li>
-            <Link prefetch={ true } className='flex text-red-500 flex-row gap-3 items-center' href={'/app/settings/logout'}>
+            <Link className='flex text-red-500 flex-row gap-3 items-center' href={'/app/settings/logout'}>
               <RxExit />
               Logout
             </Link>
