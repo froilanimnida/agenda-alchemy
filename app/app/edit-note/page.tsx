@@ -1,14 +1,13 @@
 'use client'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import EditNoteField from './EditNoteField'
 import ApplicationNavBar from '@/app/components/ApplicationNavBar'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 
 const EditNote = () => {
-  var noteId = ''
+  const [noteId, setNoteId] = useState('')
   useEffect(() => {
-    noteId = sessionStorage.getItem('note_id') ?? ''
+    setNoteId(sessionStorage.getItem('note_id') ?? '')
   })
   return (
     <main className='flex flex-col gap-10'>
