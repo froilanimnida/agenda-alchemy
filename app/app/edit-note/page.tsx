@@ -8,7 +8,7 @@ const EditNote = () => {
   const [noteId, setNoteId] = useState('')
   useEffect(() => {
     setNoteId(sessionStorage.getItem('note_id') ?? '')
-  })
+  }, [noteId])
   return (
     <main className='flex flex-col gap-10'>
       <ApplicationNavBar />
