@@ -17,14 +17,12 @@ const NotesCollections = () => {
         toast.error(error.message);
       } else {
         setNotes(notes as any[]); 
-        toast.success('Notes fetched successfully'); // Show success only after fetch
+        toast.success('Notes fetched successfully');
       }
     }
     fetchNotes();
-  }, []); // Empty dependency array: runs only on initial render
+  }, []);
   
-  console.log(notes);
-
   return (
     notes.length === 0 ? <h1>Empty notes</h1> : 
     <main>

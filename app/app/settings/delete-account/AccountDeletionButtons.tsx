@@ -26,7 +26,6 @@ const deleteAccount = async () => {
     .from('users')
     .delete()
     .eq('user_id', user_id)
-  console.log(error)
   if (error == null)
     Promise.resolve()
 }
