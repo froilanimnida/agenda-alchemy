@@ -11,7 +11,7 @@ const AddNotes = () => {
       <Logo />
       <Image src={ AddNoteIcon } alt='An icon of a paper with check, chat bubbles and like beside it.'/>
       <div className='flex justify-self-center flex-col justify-center items-center gap-5'>
-        <h1 className='text-center'>Give your note a title</h1>
+        <h1 className='text-center font-bold'>Create a note</h1>
         <NoteTitleForm />
         <Link className='btn btn-outline btn-error' href={'/app'}>Cancel</Link>
       </div>
