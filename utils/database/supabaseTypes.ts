@@ -11,28 +11,28 @@ export type Database = {
     Tables: {
       notes: {
         Row: {
-          content: string
+          content: string | null
           created_at: string
           note_id: number
-          title: string
-          updated_at: string
-          user_id: number
+          title: string | null
+          updated_at: string | null
+          user_id: number | null
         }
         Insert: {
-          content?: string
+          content?: string | null
           created_at?: string
           note_id?: number
-          title?: string
-          updated_at?: string
-          user_id: number
+          title?: string | null
+          updated_at?: string | null
+          user_id?: number | null
         }
         Update: {
-          content?: string
+          content?: string | null
           created_at?: string
           note_id?: number
-          title?: string
-          updated_at?: string
-          user_id?: number
+          title?: string | null
+          updated_at?: string | null
+          user_id?: number | null
         }
         Relationships: [
           {
@@ -55,7 +55,7 @@ export type Database = {
         Insert: {
           created_at?: string
           email: string
-          name: string
+          name?: string
           password: string
           user_id?: number
         }

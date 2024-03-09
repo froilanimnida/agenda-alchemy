@@ -44,7 +44,7 @@ const SignUpForm = () => {
         loading: 'Loading',
         success: 'Success, you may login now.',
         error: (error) => `${error.message}`
-      }).then(() => router.push('/log-in'))
+      }).then(() => router.push('/log-in')).catch(()=>{})
     }
   }
   return (
@@ -79,7 +79,7 @@ const addUserToDatabase = async (email: string, password: string) => {
   const hashedPassword = crypto.createHash('sha256').update(password).digest('base64')
   const { data, error } = await supabase.from('users').insert([{ email: email, password: hashedPassword },]).select()
   if (error?.message.startsWith('duplicate')) {
-    throw new Error('Username already taken');
+    throw new Error('Email is already taken');
   }
 }
 

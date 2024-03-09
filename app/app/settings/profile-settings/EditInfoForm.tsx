@@ -1,10 +1,18 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaCircleArrowRight } from "react-icons/fa6"
 import toast from 'react-hot-toast';
 import { supabase } from '@/utils/database/supabase';
 
 const EditInfoForm = () => {
+  useEffect(() => {
+    // let getUserInfo = getCurrentUserProfileData()
+    // TODO: clear this later
+    // console.log(getUserInfo);
+    console.log('Run once');
+    
+  }, []);
+  
   const [newName, setNewName] = useState('')
   const [newEmail, setNewEmail] = useState('')
   const [currentPassword, setCurrentPassword] = useState('')
